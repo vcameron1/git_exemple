@@ -2,4 +2,4 @@
 
 Ceci est un répertoire d'exemple
 
-J'ajoute une nouivelle ligne
+J'ajoute une nouvelle ligne
