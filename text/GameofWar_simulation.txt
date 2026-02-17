@@ -1,0 +1,49 @@
+#Functions of the different actions that will be applied to the deck on a play
+
+#Shuffles the deck
+  brasser<-function(){
+    random<-sample(1:52, size = 52)
+    assign("paquet", paquet[random, ], envir = globalenv())
+  }
+#Draw the first card of the deck and delete it from the deck
+  tirer<-function(){
+    card<-paquet[1,]
+    assign("paquet",paquet[-1,],envir = globalenv())
+    card}
+#Split the deck between the House and the player (26 each)
+  split<-function(){
+    
+    for (i in 1:26) {
+      P[i,]<-tirer()
+      H[i,]<-tirer()}
+    }
+ 
+#This is where the actual actions the player and the house will do
+#The result will be the sum of the difference between the scores of every moves
+  Pmove<-function(){
+    card<-P[1,]
+    assign("P",P[-1,],envir = globalenv())
+    card}
+  
+  Hmove<-function(){
+    card<-H[1,]
+    assign("H",H[-1,],envir = globalenv())
+    card}
+  
+  
+  
+  fights<-function(){
+    for (i in 1:26){
+      fight$scoreH[i]<-Hmove()[,3]
+      fight$scoreP[i]<-Pmove()[,3]
+    }
+    fight$scoreTot<-fight$scoreH - fight$scoreP
+    result<-sum(fight$scoreTot)
+    print(result)
+  }
+
+jouer<-function(){
+  brasser()
+  split()
+  fights()
+}
